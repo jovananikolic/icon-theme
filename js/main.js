@@ -40,7 +40,7 @@ $(document).ready(function () {
 
                 var r = $circle.attr('r');
                 var c = Math.PI * (r * 2);
-                var pct = ((val - 100) / 100) * c;
+                var pct = ((100 - val) / 100) * c;
 
                 $circle.css({strokeDashoffset: pct});
             }
@@ -51,8 +51,8 @@ $(document).ready(function () {
 
         });
     }
-    
-        if ($('.owl-carousel').length > 0) {
+
+    if ($('.owl-carousel').length > 0) {
         $('.team').owlCarousel({
             loop: true,
             margin: 10,
@@ -75,4 +75,48 @@ $(document).ready(function () {
 
     }
 
+$('.example-fontawesome-o').each(function(){
+    var currentRating = $(this).data('current-rating');
+
+    $('.stars-example-fontawesome-o .current-rating')
+            .find('span')
+            .html(currentRating);
+
+    $('.stars-example-fontawesome-o .clear-rating').on('click', function (event) {
+        event.preventDefault();
+
+        $(this)
+                .barrating('clear');
+    });
+
+    $(this).barrating({
+        theme: 'fontawesome-stars-o',
+        showSelectedRating: false,
+        initialRating: currentRating,
+        onSelect: function (value, text) {
+            if (!value) {
+                $(this)
+                        .barrating('clear');
+            } else {
+                $('.stars-example-fontawesome-o .current-rating')
+                        .addClass('hidden');
+
+                $('.stars-example-fontawesome-o .your-rating')
+                        .removeClass('hidden')
+                        .find('span')
+                        .html(value);
+            }
+        },
+        onClear: function (value, text) {
+            $('.stars-example-fontawesome-o')
+                    .find('.current-rating')
+                    .removeClass('hidden')
+                    .end()
+                    .find('.your-rating')
+                    .addClass('hidden');
+        }
+    });
+});
+
+    
 });
