@@ -40,7 +40,7 @@ $(document).ready(function () {
 
                 var r = $circle.attr('r');
                 var c = Math.PI * (r * 2);
-                var pct = ((100 - val) / 100) * c;
+                var pct = ((val - 100) / 100) * c;
 
                 $circle.css({strokeDashoffset: pct});
             }
@@ -50,6 +50,29 @@ $(document).ready(function () {
 //            $('.cont').attr('data-pct', val);
 
         });
+    }
+    
+        if ($('.owl-carousel').length > 0) {
+        $('.team').owlCarousel({
+            loop: true,
+            margin: 10,
+            dots: false,
+            nav: true,
+            navText: ['<', '>'],
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 2
+                },
+                768: {
+                    items: 3
+                }
+            }
+        });
+
     }
 
 });
